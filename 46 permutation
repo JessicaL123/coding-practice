@@ -8,7 +8,7 @@ public class Permutation {
 	    List<List<Integer>> finalresults = new ArrayList<List<Integer>>();
 	    List<Integer> result = new ArrayList<>();
 	    
-	    if (nums == null || nums.length == 0) {
+	    if ( nums.length == 0) {
 	        return finalresults;
 	    }
 	    
