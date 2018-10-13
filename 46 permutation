@@ -8,37 +8,36 @@ public class Permutation {
 	    List<List<Integer>> finalresults = new ArrayList<List<Integer>>();
 	    List<Integer> result = new ArrayList<>();
 	    
-	    if ( nums.length == 0) {
+	    if (nums.length == 0) { //int[] is an array class 
 	        return finalresults;
 	    }
 	    
-	    subset(nums, 0, finalresults, result);
+	    subset(nums, result, finalresults);
 	    System.out.println(finalresults);
 	    return finalresults;
 	}
 
-	public void subset(int[] nums, int j , List<List<Integer>> results, List<Integer> result) {
-	    if (nums.length == result.size()) {
-	        List<Integer> temp = new ArrayList<>(result); //creates a new arraylist and list ensure to use linkedlist later
-	        results.add(temp);//add a new list            // since it is list, it can only use the methods in list
+	public void subset(int[] nums, List<Integer> each, List<List<Integer>> finals) {
+	    if ( each.size()== nums.length) {
+	        List<Integer> temp = new ArrayList<>(each); //creates a new arraylist and list ensure to use linkedlist later
+	        finals.add(temp);//add a new list of 'each'           // since it is list, it can only use the methods in list
 	    }                                                 // type casting ArrayList<Integer> arrayList = (ArrayList<Integer>) list;
-	    												  // initialization: List<String> list = Arrays.asList(new String[]{"foo", "bar"});
+	    							// initialization: List<String> list = Arrays.asList(new String[]{"foo", "bar"});
 	                                                      //List<List<Integer>> list = new LinkedList<List<Integer>>(); parameter in generic type must be the same
-	                                                      //List<LinkedList<Integer>> list = new LinkedList<LinkedList<Integer>>();
-	    												  
+	    									
 	    
-	    for (int i=0; i<nums.length; i++) {
-	        if (!result.contains(nums[i])) {
-	            result.add(nums[i]);//put number back to the list
-	            subset(nums, i +1, results, result);               //recursion
-	            result.remove(result.size() - 1);
+	    for (int i=0; i<nums.length; i++) {  
+	        if (!each.contains(nums[i])) {
+	            each.add(nums[i]);//put number to the list
+	            subset(nums, each, finals); //recursion to add number from num one by one
+	            each.remove(each.size() - 1);
 	        }
 	    }
 	}
 	
 	public static void main(String[] args) {
 		Permutation p = new Permutation();
-		int[] nums= {10,11,12};
+		int[] nums= {10,11,12,15};
 		p.permute(nums);
 	}
 	
